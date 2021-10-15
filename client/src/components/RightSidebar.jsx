@@ -11,7 +11,7 @@ const RightSidebar = () => {
   return (
     <Grid item xs={3}>
       <Container>
-        <h4>Chats</h4>
+        <h4>User Info</h4>
       </Container>
     </Grid>
   );
