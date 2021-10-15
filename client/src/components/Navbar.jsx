@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
+import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 import { Home } from "@mui/icons-material";
 
 const Navbar = () => {
@@ -15,8 +15,11 @@ const Navbar = () => {
             aria-label="home"
             sx={{ mr: 2 }}
           >
-            <Home /> Chat App
+            <Home size="large" /> 
           </IconButton>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Chat App
+          </Typography>
         </Toolbar>
       </AppBar>
     </Box>
