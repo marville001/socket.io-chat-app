@@ -12,6 +12,8 @@ let socket;
 const ChatRoom = ({ location }) => {
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
 
   const ENDPOINT = 'http://localhost:4000'
 
@@ -23,19 +25,38 @@ const ChatRoom = ({ location }) => {
     setName(name);
     setRoom(room);
 
-    socket.emit('user-joined', {name, room})
+    socket.emit('join', {name, room})
 
     return ()=>{
         socket.emit('disconnect');
         socket.off()
     }
-
   }, [ENDPOINT, location.search]);
+
+  useEffect(() => {
+    socket.on('message', (message)=>{
+      setMessages([...messages, message])
+    })
+  },[messages])
+
+
+  const sendMessage = (message)=>{
+    if(message){
+      socket.emit('sendMessage', message, ()=>{
+        setMessage('')
+      })
+    }
+  }
+
+  console.log(message, messages);
 
   return (
     <Grid container spacing={0}>
       <LeftSidebar />
-      <ChatArea />
+      <ChatArea 
+      message={message} 
+      setMessage={setMessage} 
+      sendMessage={sendMessage} />
       <RightSidebar />
     </Grid>
   );

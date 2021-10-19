@@ -23,16 +23,17 @@ const InputContainer = styled("div")((theme) => ({
 }));
 const Input = styled(TextField)((theme) => ({
   width: "80%",
-  height:"100%",
+  height: "100%",
   borderRadius: 0,
 }));
 const SendButton = styled(Button)((theme) => ({
   width: "20%",
-//   borderRadius: 0,
-  borderRight: 0
+  //   borderRadius: 0,
+  borderRight: 0,
 }));
 
-const ChatArea = () => {
+const ChatArea = ({sendMessage, message, setMessage}) => {
+  
   return (
     <Grid item xs={6}>
       <Container>
@@ -40,7 +41,12 @@ const ChatArea = () => {
           <h4>Chats</h4>
         </ChatsContainer>
         <InputContainer>
-          <Input placeholder="Hello" />
+          <Input
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyPress={e=>e.key === "Enter"? sendMessage(message): null}
+            placeholder="Hello"
+          />
           <SendButton variant="contained">Send</SendButton>
         </InputContainer>
       </Container>

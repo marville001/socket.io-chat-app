@@ -19,7 +19,7 @@ const removeUser = ({id})=>{
     if(index !== -1) return users.splice(inddex, 1)[0];
 }
 
-const getUser = (id)=> users.find(user=>user.id===id);
+const getUser = (id)=>users.find(user=>user.id===id);
 
 const getUsersInRoom = (room)=>users.filter(user=>user.room===room)
 
