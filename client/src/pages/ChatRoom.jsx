@@ -49,14 +49,13 @@ const ChatRoom = ({ location }) => {
       })
     }
   }
-
-  console.log(message, messages);
-
   return (
     <Grid container spacing={0}>
       <LeftSidebar />
       <ChatArea 
       message={message} 
+      name={name} 
+      messages={messages} 
       setMessage={setMessage} 
       sendMessage={sendMessage} />
       <RightSidebar />

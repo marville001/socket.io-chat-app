@@ -1,5 +1,30 @@
 import { Button, Grid, Paper, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import Textbar from "./Textbar";
+
+import './style.css'
+
+const ChatArea = ({sendMessage, message, messages, setMessage}) => {
+  
+  return (
+    <Grid item xs={6}>
+      <Container>
+        <ChatsContainer>
+          {messages.map(message=> <Textbar message={message} />)}
+        </ChatsContainer>
+        <InputContainer>
+          <Input
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyPress={e=>e.key === "Enter"? sendMessage(message): null}
+            placeholder="Hello"
+          />
+          <SendButton variant="contained">Send</SendButton>
+        </InputContainer>
+      </Container>
+    </Grid>
+  );
+};
 
 const Container = styled(Paper)((theme) => ({
   backgroundColor: "#fff",
@@ -31,27 +56,5 @@ const SendButton = styled(Button)((theme) => ({
   //   borderRadius: 0,
   borderRight: 0,
 }));
-
-const ChatArea = ({sendMessage, message, setMessage}) => {
-  
-  return (
-    <Grid item xs={6}>
-      <Container>
-        <ChatsContainer>
-          <h4>Chats</h4>
-        </ChatsContainer>
-        <InputContainer>
-          <Input
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            onKeyPress={e=>e.key === "Enter"? sendMessage(message): null}
-            placeholder="Hello"
-          />
-          <SendButton variant="contained">Send</SendButton>
-        </InputContainer>
-      </Container>
-    </Grid>
-  );
-};
 
 export default ChatArea;
