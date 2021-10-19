@@ -3,6 +3,8 @@ const cors = require('cors')
 const express  = require("express");
 const {Server} = require('socket.io')
 
+const {addUser, removeUser, getUser, getUsersInRoom} = require('./users')
+
 
 const app = express()
 app.use(cors())
@@ -21,12 +23,17 @@ const io = new Server(server, {
 
 io.on('connection', socket=>{
     console.log(socket.id);
-    socket.on('message', ({name, message})=>{
-        io.emit('message', {name, message})
-    })
-
+    
     socket.on('user-joined', ({name, room}, callback)=>{
-              
+        const {error, user} = addUser({id: socket.id, name, room})  
+        
+        if(error) return callback(error); 
+
+        socket.emit('message', {user:'admin', text: `${user.name}, welcome to the room ${user.room}`})
+        socket.broadcast.to(user.room).emit('message', {user:"admin", text: `${user.name}, has joined`})
+
+        socket.join(user.room);
+        callback()
     })
 
     socket.on('disconnect', ()=>{
