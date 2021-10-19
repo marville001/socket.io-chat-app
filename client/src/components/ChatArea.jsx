@@ -1,22 +1,28 @@
 import { Button, Grid, Paper, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Textbar from "./Textbar";
+import ScrollToBottom from "react-scroll-to-bottom";
 
-import './style.css'
+import "./style.css";
 
-const ChatArea = ({sendMessage, message, messages, setMessage}) => {
-  
+const ChatArea = ({ sendMessage, message, messages, setMessage }) => {
   return (
     <Grid item xs={6}>
       <Container>
         <ChatsContainer>
-          {messages.map(message=> <Textbar message={message} />)}
+          <ScrollToBottom className="messages">
+            {messages.map((message) => (
+              <Textbar message={message} />
+            ))}
+          </ScrollToBottom>
         </ChatsContainer>
         <InputContainer>
           <Input
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            onKeyPress={e=>e.key === "Enter"? sendMessage(message): null}
+            onKeyPress={(e) =>
+              e.key === "Enter" ? sendMessage(message) : null
+            }
             placeholder="Hello"
           />
           <SendButton variant="contained">Send</SendButton>

@@ -10,3 +10,9 @@ hr{
     height: 0.08px;
     background-color: rgb(247, 247, 247);
 }
+
+.messages {
+    padding: 5% 0;
+    overflow: auto;
+    flex: auto;
+  }
