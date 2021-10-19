@@ -25,6 +25,11 @@ const ChatRoom = ({ location }) => {
 
     socket.emit('user-joined', {name, room})
 
+    return ()=>{
+        socket.emit('disconnect');
+        socket.off()
+    }
+
   }, [ENDPOINT, location.search]);
 
   return (

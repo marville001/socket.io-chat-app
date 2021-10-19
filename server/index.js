@@ -21,8 +21,8 @@ io.on('connection', socket=>{
         io.emit('message', {name, message})
     })
 
-    socket.on('user-joined', ({name, room})=>{
-        
+    socket.on('user-joined', ({name, room}, callback)=>{
+              
     })
 
     socket.on('disconnect', ()=>{
