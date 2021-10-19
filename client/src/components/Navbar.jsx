@@ -18,7 +18,7 @@ const Navbar = () => {
             <Home size="large" /> 
           </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Chat App
+            RECHAT MESSANGER
           </Typography>
         </Toolbar>
       </AppBar>

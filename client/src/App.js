@@ -1,20 +1,18 @@
-import { Grid } from '@mui/material'
-
 import Navbar from './components/Navbar'
-import LeftSidebar from './components/LeftSidebar'
-import RightSidebar from './components/RightSidebar'
-import ChatArea from './components/ChatArea'
+import { Route, Switch } from 'react-router'
+import ChatRoom from './pages/ChatRoom'
+import JoinRoom from './pages/JoinRoom'
 
 
 const App = () => {
   return (
     <div>
       <Navbar/>
-      <Grid container spacing={0}>
-        <LeftSidebar />
-        <ChatArea/>
-        <RightSidebar/>
-      </Grid>
+      <Switch>
+        <Route exact path="/" component={JoinRoom} />
+        <Route exact path="/chat" component={ChatRoom} />
+      </Switch>
+      
     </div>
   )
 }
